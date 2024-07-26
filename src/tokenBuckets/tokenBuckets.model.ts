@@ -57,6 +57,7 @@ async function takeTokens(bucketName: string, numTokens: number): Promise<TokenR
 function refillBucket(tokenBucketStatus: TokenBucketStatus) {
   const { tokens, burst, lastRefilledDate, sustained } = tokenBucketStatus;
   const now = Date.now();
+  //TODO: handle inaccuracies of javascript floating point addition/multiplication
   const timePassedSec = (now - lastRefilledDate) / 1000;
   const tokensAddedPerSec = sustained / 60;
   const tokensToAdd = timePassedSec * tokensAddedPerSec;
