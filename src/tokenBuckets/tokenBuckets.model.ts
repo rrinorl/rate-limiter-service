@@ -39,7 +39,7 @@ async function takeTokens(bucketName: string, numTokens: number): Promise<TokenR
     );
     return {
       // responding with whole number tokens remaining without losing precision internally
-      tokensRemaining: Math.floor(tokenBucketStatus.tokens),
+      wholeTokensRemaining: Math.floor(tokenBucketStatus.tokens),
       tokensRemoved: numTokens,
     };
   }
@@ -49,7 +49,7 @@ async function takeTokens(bucketName: string, numTokens: number): Promise<TokenR
   );
   return {
     // responding with whole number tokens remaining without losing precision internally
-    tokensRemaining: Math.floor(tokenBucketStatus.tokens),
+    wholeTokensRemaining: Math.floor(tokenBucketStatus.tokens),
     tokensRemoved: 0,
   };
 }
@@ -70,8 +70,8 @@ function refillBucket(tokenBucketStatus: TokenBucketStatus) {
 interface TokenRemovalResponse {
   /** Tokens removed from bucket **/
   tokensRemoved: number;
-  /** Tokens remaining in bucket rounded down to a whole number **/
-  tokensRemaining: number;
+  /** Tokens remaining in bucket rounded down as a whole number **/
+  wholeTokensRemaining: number;
 }
 
 type TokenBucketModel = Record<string, TokenBucketStatus>;

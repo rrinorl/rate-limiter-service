@@ -16,12 +16,12 @@ async function post(req: Request, res: Response): Promise<void> {
     return;
   }
 
-  const { tokensRemoved, tokensRemaining } = await tokenBucketsService.takeTokens(endpoint, 1);
-  res.header('x-ratelimit-remaining', tokensRemaining + '');
+  const { tokensRemoved, wholeTokensRemaining } = await tokenBucketsService.takeTokens(endpoint, 1);
+  res.header('x-ratelimit-remaining', wholeTokensRemaining + '');
   if (!tokensRemoved) {
-    res.status(StatusCodes.TOO_MANY_REQUESTS).json({ tokensRemaining });
+    res.status(StatusCodes.TOO_MANY_REQUESTS).json({ tokensRemaining: wholeTokensRemaining });
     return;
   }
 
-  res.status(StatusCodes.OK).json({ tokensRemaining });
+  res.status(StatusCodes.OK).json({ tokensRemaining: wholeTokensRemaining });
 }
