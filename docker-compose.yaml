@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  rate-limiter-service:
+    container_name: rate-limiter-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+      - ./nodemon.json:/home/node/app/nodemon.json
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: npm run start
+    environment:
+      PORT: 3000
+      NODE_ENV: development

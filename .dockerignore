@@ -1,0 +1,15 @@
+node_modules
+reports
+build
+.dockerignore
+.eslintignore
+.eslintrc
+.gitignore
+.prettierrc
+docker-compose.yaml
+Dockerfile
+jest.config.ts
+nodemon.json
+README.md
+.env.example
+.env
