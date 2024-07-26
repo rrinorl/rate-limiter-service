@@ -57,6 +57,7 @@ function refillBucket(tokenBucketStatus: TokenBucketStatus) {
   const now = Date.now();
   const timePassedSec = (now - lastRefilledDate) / 1000;
   const tokensAddedPerSec = sustained / 60;
+  // NOTE: there may be a slight precision loss here via the floor function as it's rounding down.
   const tokensToAdd = Math.floor(timePassedSec * tokensAddedPerSec);
 
   if (tokensToAdd > 0) {
